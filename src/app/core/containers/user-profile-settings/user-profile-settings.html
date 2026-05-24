@@ -1,0 +1,74 @@
+<section class="page-shell">
+  <section class="page-card page-hero">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">Налаштування</span>
+      <h1>Профіль і дані</h1>
+      <p class="page-hero__description">
+        Тут можна змінити базову валюту, експортувати локальні дані або завантажити резервну копію.
+      </p>
+    </div>
+  </section>
+
+  <section class="page-card settings-card">
+    <section class="settings-section">
+      <div class="settings-section__header">
+        <div>
+          <h2 class="section-title">Базова валюта</h2>
+          <p class="settings-subtitle">Використовується як значення за замовчуванням для статистики цін.</p>
+        </div>
+        <span class="chip">{{ settingsStore.defaultCurrency() }}</span>
+      </div>
+
+      <div class="currency-actions">
+        @for (option of currencyOptions; track option.value) {
+          <button
+            mat-stroked-button
+            type="button"
+            [class.is-active]="settingsStore.defaultCurrency() === option.value"
+            (click)="setDefaultCurrency(option.value)"
+          >
+            {{ option.label }}
+          </button>
+        }
+      </div>
+
+      @if (settingsStore.errorMessage(); as settingsError) {
+        <p class="status-text status-text--error">{{ settingsError }}</p>
+      }
+    </section>
+
+    <section class="settings-section">
+      <div class="settings-section__header">
+        <div>
+          <h2 class="section-title">Резервна копія</h2>
+          <p class="settings-subtitle">Експортуй поточні дані у JSON або віднови їх з файлу.</p>
+        </div>
+      </div>
+
+      <div class="backup-actions">
+        <button mat-raised-button type="button" (click)="fileInput.click()">
+          Завантажити JSON
+        </button>
+        <button mat-flat-button type="button" (click)="pageStore.downloadData()">
+          Експортувати JSON
+        </button>
+      </div>
+
+      @if (pageStore.uploadDataFromFileErrorMessage(); as uploadError) {
+        <p class="status-text status-text--error">{{ uploadError }}</p>
+      }
+
+      @if (pageStore.downloadDataErrorMessage(); as downloadError) {
+        <p class="status-text status-text--error">{{ downloadError }}</p>
+      }
+
+      <input
+        #fileInput
+        type="file"
+        accept=".json"
+        hidden
+        (change)="pageStore.uploadDataFromFile(fileInput.files?.[0])"
+      />
+    </section>
+  </section>
+</section>

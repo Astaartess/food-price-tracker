@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>{{ offer.store }}</h2>
+
+<mat-dialog-content>
+  <div class="dialog-meta">
+    <div class="dialog-meta__row">
+      <span class="dialog-meta__label">Ціна</span>
+      <strong>{{ offer.price | displayNumber }} {{ offer.currency }}</strong>
+    </div>
+    <div class="dialog-meta__row">
+      <span class="dialog-meta__label">Дата</span>
+      <span>{{ offer.date | shortDate }}</span>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-flat-button [mat-dialog-close]="true">Закрити</button>
+</mat-dialog-actions>

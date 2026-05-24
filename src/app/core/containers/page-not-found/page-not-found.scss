@@ -1,0 +1,18 @@
+.not-found-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.not-found-card h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.not-found-card__description {
+  margin: 0;
+  max-width: 48ch;
+  color: var(--app-muted);
+  line-height: 1.6;
+}

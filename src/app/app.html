@@ -1,0 +1,37 @@
+<section class="app-shell">
+  <header class="app-header">
+    <div class="app-header__content">
+      <a class="app-brand" [routerLink]="['/products']">
+        <span class="app-brand__mark">C</span>
+        <span class="app-brand__text">
+          <strong>Check-Price</strong>
+          <small>Ціни, офери та локальний каталог</small>
+        </span>
+      </a>
+
+      <nav class="app-nav">
+        <a
+          class="app-nav__link"
+          [routerLink]="['/products']"
+          routerLinkActive="app-nav__link--active"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          Товари
+        </a>
+        <a
+          class="app-nav__link"
+          [routerLink]="['/settings']"
+          routerLinkActive="app-nav__link--active"
+        >
+          Налаштування
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app-container">
+    <section class="app-content">
+      <router-outlet />
+    </section>
+  </main>
+</section>

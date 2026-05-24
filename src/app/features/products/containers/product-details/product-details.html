@@ -1,0 +1,45 @@
+<section class="page-shell">
+  <a class="page-back-link" href="" (click)="goBack($event)">← Назад до каталогу</a>
+
+  @if (store.product(); as product) {
+    <section class="page-card page-grid page-grid--two">
+      <div class="product-summary">
+        <span class="page-hero__eyebrow">Деталі товару</span>
+        <h1>{{ product.name }}</h1>
+        @if (product.description) {
+          <p class="product-summary__description">{{ product.description }}</p>
+        } @else {
+          <p class="product-summary__description">
+            Опис ще не додано, але можна вже аналізувати ціни та працювати з оферами.
+          </p>
+        }
+
+        <div class="page-actions">
+          <a mat-flat-button [routerLink]="['/products', product.id, 'offers']">Переглянути офери</a>
+          <button mat-stroked-button type="button" (click)="goBack($event)">Повернутися</button>
+        </div>
+      </div>
+
+      <aside class="meta-list">
+        <div class="meta-item">
+          <span class="meta-item__label">Одиниця виміру</span>
+          <span class="meta-item__value">{{ product.unit }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-item__label">Ідентифікатор</span>
+          <span class="meta-item__value">#{{ product.id }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-item__label">Можливості</span>
+          <span class="meta-item__value">Статистика, історія оферів, додавання нових записів</span>
+        </div>
+      </aside>
+    </section>
+
+    <app-product-price-statistics [productId]="product.id" />
+  } @else if (store.errorMessage(); as error) {
+    <section class="page-card">
+      <p class="status-text status-text--error">{{ error }}</p>
+    </section>
+  }
+</section>

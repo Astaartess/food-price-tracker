@@ -1,0 +1,64 @@
+﻿<section class="page-shell">
+  <section class="page-card page-hero">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">Каталог</span>
+      <h1>Товари</h1>
+      <p class="page-hero__description">
+        Обирай товар, переглядай динаміку цін, відкривай історію оферів і керуй локальними
+        даними без зайвих кроків.
+      </p>
+    </div>
+
+    <div class="page-actions">
+      <a mat-stroked-button [routerLink]="['/settings']">Налаштування</a>
+    </div>
+  </section>
+
+  @if (store.errorMessage(); as errorMessage) {
+    <section class="page-card">
+      <p class="status-text status-text--error">{{ errorMessage }}</p>
+    </section>
+  }
+
+  <section class="page-card">
+    <div class="catalog-header">
+      <div>
+        <h2 class="section-title">Список товарів</h2>
+        <p class="catalog-subtitle">Знайди потрібний товар за назвою та відкрий картку з деталями.</p>
+      </div>
+      <span class="chip">{{ store.filteredProducts().length }} позицій</span>
+    </div>
+
+    <mat-form-field appearance="outline" class="catalog-search">
+      <mat-label>Пошук за назвою товару</mat-label>
+      <input
+        matInput
+        type="text"
+        [value]="store.searchTerm()"
+        (input)="onSearch($event)"
+        placeholder="Наприклад, молоко або картопля"
+      />
+    </mat-form-field>
+
+    @if (store.filteredProducts().length === 0) {
+      <div class="empty-state">
+        <h3>Нічого не знайдено</h3>
+        <p>Спробуй змінити пошуковий запит, щоб побачити інші товари.</p>
+      </div>
+    } @else {
+      <div class="product-grid">
+        @for (product of store.filteredProducts(); track product.id) {
+          <a class="product-card" [routerLink]="['/products', product.id]">
+            <span class="product-card__badge">Товар</span>
+            <strong>{{ product.name }}</strong>
+            <span class="product-card__meta">Одиниця виміру: {{ product.unit }}</span>
+            @if (product.description) {
+              <p>{{ product.description }}</p>
+            }
+            <span class="product-card__link">Перейти до деталей</span>
+          </a>
+        }
+      </div>
+    }
+  </section>
+</section>

@@ -1,0 +1,19 @@
+.chart-title {
+  font-size: 0.92rem;
+  color: var(--app-muted);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+:host {
+  display: block;
+}
+
+canvas {
+  width: 100%;
+  min-height: 320px;
+  padding: 14px 8px 4px;
+  border: 1px solid var(--app-border);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 248, 0.85));
+}

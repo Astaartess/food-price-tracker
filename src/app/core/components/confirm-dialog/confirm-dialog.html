@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Підтвердження</h2>
+
+<mat-dialog-content>
+  {{ data.message }}
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button [mat-dialog-close]="false">Скасувати</button>
+  <button mat-flat-button color="warn" [mat-dialog-close]="true">Видалити</button>
+</mat-dialog-actions>

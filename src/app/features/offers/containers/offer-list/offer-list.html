@@ -1,0 +1,113 @@
+﻿<section class="page-shell">
+  <a class="page-back-link" href="" (click)="goBack($event)">← Назад до товару</a>
+
+  <section class="page-card page-hero">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">Офери</span>
+      <h1>Список пропозицій</h1>
+      <p class="page-hero__description">
+        Переглядай офери, фільтруй записи за періодом, відкривай деталі та редагуй застарілі
+        значення.
+      </p>
+    </div>
+
+    <div class="page-actions">
+      <a mat-flat-button [routerLink]="['/products', productId, 'offers', 'add']">Додати офер</a>
+    </div>
+  </section>
+
+  @if (store.isOffersLoading()) {
+    <section class="page-card">
+      <p class="status-text">Завантаження оферів...</p>
+    </section>
+  } @else if (store.errorMessage(); as error) {
+    <section class="page-card">
+      <p class="status-text status-text--error">{{ error }}</p>
+    </section>
+  } @else if (store.offers(); as offers) {
+    <section class="page-card">
+      <div class="offers-header">
+        <div>
+          <h2 class="section-title">Таблиця оферів</h2>
+          <p class="offers-subtitle">Використай діапазон дат, щоб залишити лише потрібні записи.</p>
+        </div>
+        <span class="chip">{{ store.filteredOffers().length }} записів</span>
+      </div>
+
+      <div class="offers-filters">
+        <mat-form-field appearance="outline" class="offers-filter-field">
+          <mat-label>Період від</mat-label>
+          <input matInput type="date" [value]="store.dateFrom()" (input)="setDateFrom($event)" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="offers-filter-field">
+          <mat-label>Період до</mat-label>
+          <input matInput type="date" [value]="store.dateTo()" (input)="setDateTo($event)" />
+        </mat-form-field>
+
+        <button mat-stroked-button type="button" (click)="store.resetDateFilter()">Скинути</button>
+      </div>
+
+      @if (store.filteredOffers().length === 0) {
+        <div class="empty-state">
+          <h3>Офери не знайдено</h3>
+          <p>Для вибраного діапазону дат немає записів. Зміни період або додай новий офер.</p>
+        </div>
+      } @else {
+        <div class="soft-table">
+          <table mat-table [dataSource]="store.filteredOffers()">
+            <ng-container matColumnDef="store">
+              <th mat-header-cell *matHeaderCellDef>Магазин</th>
+              <td mat-cell *matCellDef="let offer">{{ offer.store }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef>Ціна</th>
+              <td mat-cell *matCellDef="let offer">{{ offer.price | displayNumber }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="currency">
+              <th mat-header-cell *matHeaderCellDef>Валюта</th>
+              <td mat-cell *matCellDef="let offer">{{ offer.currency }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Дата</th>
+              <td mat-cell *matCellDef="let offer">{{ offer.date | shortDate }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let offer">
+                <a
+                  mat-icon-button
+                  [routerLink]="['/products', productId, 'offers', offer.id, 'edit']"
+                  (click)="$event.stopPropagation()"
+                >
+                  <mat-icon>edit</mat-icon>
+                </a>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="remove">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let offer">
+                <button mat-icon-button (click)="removeOffer(offer); $event.stopPropagation()">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let offer; columns: tableColumns"
+              class="offer-row"
+              (click)="openOfferDetails(offer)"
+            ></tr>
+          </table>
+        </div>
+      }
+    </section>
+  }
+</section>

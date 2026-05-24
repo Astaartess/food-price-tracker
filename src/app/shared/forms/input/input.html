@@ -1,0 +1,9 @@
+<mat-form-field class="form-field" appearance="outline">
+  <mat-label>{{ label() }}</mat-label>
+  <input matInput [formField]="field()" />
+  @if (isMaxLengthErrorShown()) {
+    <mat-error>Максимум {{ maxLengthValue() }} символів</mat-error>
+  } @else if (isRequiredErrorShown()) {
+    <mat-error>Обов'язкове поле</mat-error>
+  }
+</mat-form-field>

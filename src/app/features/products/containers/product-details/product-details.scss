@@ -1,0 +1,19 @@
+.product-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.product-summary h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.product-summary__description {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--app-muted);
+  line-height: 1.65;
+}

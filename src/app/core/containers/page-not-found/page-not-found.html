@@ -1,0 +1,11 @@
+<section class="page-shell">
+  <section class="page-card not-found-card">
+    <span class="page-hero__eyebrow">404</span>
+    <h1>{{ store.title() }}</h1>
+    <p class="not-found-card__description">{{ store.description() }}</p>
+    <div class="page-actions">
+      <a mat-flat-button [routerLink]="['/products']">Повернутися до товарів</a>
+      <a mat-stroked-button [routerLink]="['/settings']">Відкрити налаштування</a>
+    </div>
+  </section>
+</section>

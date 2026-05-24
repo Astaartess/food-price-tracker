@@ -1,0 +1,20 @@
+<div class="dashboard-container">
+  <div class="dashboard-card">
+    <h1 class="dashboard-title">Data Backup Dashboard</h1>
+    <p class="dashboard-subtitle">Upload or download application data safely.</p>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" (click)="fileInput.click()">Upload JSON</button>
+
+      <button mat-raised-button color="accent" (click)="store.downloadData()">Download JSON</button>
+    </div>
+
+    <input
+      #fileInput
+      type="file"
+      accept=".json"
+      hidden
+      (change)="store.uploadDataFromFile(fileInput.files?.[0]!)"
+    />
+  </div>
+</div>

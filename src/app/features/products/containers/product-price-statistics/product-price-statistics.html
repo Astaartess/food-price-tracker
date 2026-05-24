@@ -1,0 +1,33 @@
+<section class="page-card statistics-card">
+  <div class="statistics-card__header">
+    <div>
+      <h2 class="section-title">Статистика цін</h2>
+      <p class="statistics-card__subtitle">
+        Графік показує середню вартість товару по місяцях у вибраній валюті.
+      </p>
+    </div>
+    <div class="chip-row">
+      <span class="chip">Базова валюта: {{ stats.selectedCurrency() }}</span>
+    </div>
+  </div>
+
+  <mat-tab-group
+    mat-stretch-tabs="false"
+    [selectedIndex]="selectedCurrencyTabIndex()"
+    (selectedTabChange)="setCurrency($event)"
+  >
+    @for (tab of currencyTabs; track tab.value) {
+      <mat-tab [id]="tab.value" [label]="tab.label">
+        <div class="statistics-card__body">
+          @if (stats.priceLineChartData(); as chartData) {
+            <app-line-chart [data]="chartData" [currency]="stats.selectedCurrency()" />
+          } @else {
+            <p class="status-text">
+              Недостатньо даних для побудови графіка у валюті {{ tab.label }}.
+            </p>
+          }
+        </div>
+      </mat-tab>
+    }
+  </mat-tab-group>
+</section>

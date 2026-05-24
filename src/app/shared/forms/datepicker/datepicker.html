@@ -1,0 +1,9 @@
+<mat-form-field class="form-field" appearance="outline">
+  <mat-label>{{ label() }}</mat-label>
+  <input matInput [matDatepicker]="picker" [formField]="field()" />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  @if (isRequiredErrorShown()) {
+    <mat-error>Обов'язкове поле</mat-error>
+  }
+</mat-form-field>

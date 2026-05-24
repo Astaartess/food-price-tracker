@@ -1,0 +1,49 @@
+﻿<section class="page-shell">
+  <a class="page-back-link" href="" (click)="goBack($event)">← Назад до оферів</a>
+
+  <section class="page-card form-card">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">{{ isEditMode ? 'Редагування оферу' : 'Новий офер' }}</span>
+      <h1>{{ isEditMode ? 'Редагувати пропозицію' : 'Додати пропозицію' }}</h1>
+      <p class="page-hero__description">
+        {{
+          isEditMode
+            ? 'Онови дату, магазин або вартість, щоб скоригувати історію цін для цього товару.'
+            : 'Заповни кілька полів, щоб зберегти нову пропозицію і відразу оновити історію цін.'
+        }}
+      </p>
+    </div>
+
+    <p class="status-text loading-text" [class.loading-text--visible]="isOfferLoading">
+      Завантаження оферу...
+    </p>
+
+    <form novalidate (submit)="save($event)" class="form" [class.form--loading]="isOfferLoading">
+      <app-datepicker label="Дата" [field]="offerForm.date"></app-datepicker>
+
+      <app-input-number label="Ціна" [field]="offerForm.price"></app-input-number>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Валюта</mat-label>
+        <mat-select [formField]="offerForm.currency">
+          @for (c of currencyOptions; track c) {
+            <mat-option [value]="c">{{ c }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <app-input label="Магазин" [field]="offerForm.store"></app-input>
+
+      @if (addOfferStore.errorMessage(); as errorMessage) {
+        <p class="status-text status-text--error">{{ errorMessage }}</p>
+      }
+
+      <div class="actions">
+        <button mat-stroked-button type="button" (click)="goBack($event)">Скасувати</button>
+        <button mat-flat-button type="submit" [disabled]="isOfferLoading || addOfferStore.isSaving()">
+          {{ isEditMode ? 'Зберегти зміни' : 'Зберегти офер' }}
+        </button>
+      </div>
+    </form>
+  </section>
+</section>

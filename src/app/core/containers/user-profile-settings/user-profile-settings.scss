@@ -1,0 +1,35 @@
+.settings-card {
+  display: grid;
+  gap: 28px;
+}
+
+.settings-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.settings-subtitle {
+  margin: 6px 0 0;
+  color: var(--app-muted);
+}
+
+.currency-actions,
+.backup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.currency-actions .is-active {
+  border-color: var(--app-accent);
+  background: rgba(71, 108, 88, 0.12);
+}
+
+@media (max-width: 720px) {
+  .settings-section__header {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,45 @@
+﻿.offers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.offers-subtitle {
+  margin: 6px 0 0;
+  color: var(--app-muted);
+}
+
+.offers-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.offers-filter-field {
+  width: min(220px, 100%);
+}
+
+.offer-row {
+  cursor: pointer;
+}
+
+.empty-state {
+  padding: 20px;
+  border: 1px dashed rgba(83, 98, 74, 0.22);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.empty-state h3 {
+  margin: 0 0 10px;
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--app-muted);
+}
