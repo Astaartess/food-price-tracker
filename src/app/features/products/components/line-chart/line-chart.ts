@@ -23,6 +23,7 @@ export class LineChart implements AfterViewInit {
       labels: source.xLabels,
       datasets: source.datasets.map((dataset) => ({
         ...dataset,
+        spanGaps: true,
         tension: 0.3,
       })),
     };
