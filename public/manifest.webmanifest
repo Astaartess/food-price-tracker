@@ -1,9 +1,12 @@
 {
   "name": "Check-Price",
   "short_name": "Check-Price",
+  "description": "Вебдодаток для ведення статистики цін на продукти.",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "theme_color": "#476c58",
+  "background_color": "#f4f6f2",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
