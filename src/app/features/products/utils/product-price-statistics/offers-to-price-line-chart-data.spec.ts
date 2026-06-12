@@ -39,6 +39,18 @@ describe('offersToPriceLineChartData', () => {
     });
   });
 
+  it('should connect prices across months without offers', () => {
+    const offers: Offer[] = [
+      { id: 2, productId: 1, store: 'Novus', price: 0.72, currency: 'USD', date: '2026-03-01' },
+      { id: 1, productId: 1, store: 'АТБ', price: 0.55, currency: 'USD', date: '2025-10-01' },
+    ];
+
+    const result = offersToPriceLineChartData(offers, 'USD');
+
+    expect(result?.xLabels).toEqual(['10/2025', '3/2026']);
+    expect(result?.datasets[0].data).toEqual([0.55, 0.72]);
+  });
+
   it('should build chart data grouped by supported currencies', () => {
     const offers: Offer[] = [
       { id: 4, productId: 1, store: 'АТБ', price: 130, currency: 'UAH', date: '2026-03-20' },

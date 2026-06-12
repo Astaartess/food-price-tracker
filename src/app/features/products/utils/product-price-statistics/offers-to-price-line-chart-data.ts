@@ -10,21 +10,22 @@ export const offersToPriceLineChartData = (
   currency: CurrencyCode,
 ): LineChartData | undefined => {
   const months = offersToMonthPrices(offersInDescOrder, currency);
+  const monthsWithPrices = months.filter((month) => month.averagePrice !== null);
 
-  if (months.length <= 1) {
+  if (monthsWithPrices.length <= 1) {
     return undefined;
   }
 
   const datasets: LineChartDataset[] = [
     {
       label: 'Середня ціна',
-      data: months.map((month) => month.averagePrice),
+      data: monthsWithPrices.map((month) => month.averagePrice),
       borderColor: 'rgb(255, 159, 64)',
     },
   ];
 
   return {
-    xLabels: months.map((month) => month.monthLabel),
+    xLabels: monthsWithPrices.map((month) => month.monthLabel),
     datasets,
     scales: getLineChartScalesForDatasets(datasets),
   };
