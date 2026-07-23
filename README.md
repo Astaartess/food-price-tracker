@@ -1,59 +1,63 @@
-# App
+# Check-Price (Food Price Tracker)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+A personal web application for tracking grocery prices over time — add products, log prices from different stores, and visualize how prices change using interactive charts.
 
-## Development server
+**Live demo:** https://astaartess.github.io/Check-Price/#/products
+**Repo:** https://github.com/Astaartess/food-price-tracker
 
-To start a local development server, run:
+## Features
+
+- Create, edit, and delete products, organized into categories
+- Log price entries per product per store, with full history
+- Sortable, paginated, filterable tables (Angular Material)
+- Interactive price history charts (Chart.js), including correct handling of gaps in data (`spanGaps`)
+- Track special offers/discounts (store, discount %, validity period)
+- Installable as a Progressive Web App (PWA) with offline support
+
+## Tech Stack
+
+- **Angular** (standalone components) + **TypeScript**
+- **Angular Material** — UI components (tables, forms, dialogs, cards)
+- **RxJS** + **Angular Signals** — reactive state
+- **IndexedDB** (via `ngx-indexed-db`) — fully local storage, no backend required
+- **Chart.js** — price history visualization
+- **date-fns** — date handling
+- **Angular Service Worker** — PWA / offline support
+
+## What I built
+
+The entire app end-to-end, including:
+
+- Angular project setup, routing, and folder structure
+- IndexedDB schema design (`products`, `categories`, `priceRecords`, `offers` object stores) and versioning/migrations
+- CRUD services for products, categories, price history, and offers
+- Material-based UI (tables with sorting/pagination/filtering, forms, dialogs)
+- Chart.js integration for price trend visualization
+- PWA configuration (manifest, service worker, offline mode)
+- GitHub Pages deployment, including fixing hash-based routing and `base-href` configuration
+
+## Planned but not yet implemented
+
+Being upfront about scope — these were designed but not built yet:
+
+- Automatic price scraping from real store websites (currently all prices are entered manually)
+- Push notifications on price drops
+- Cross-store price comparison
+- Aggregate analytics (average/min/max price, month-over-month change)
+
+## Running locally
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Navigate to `http://localhost:4200/`. The app will reload automatically on file changes.
 
 ```bash
-ng generate component component-name
+ng build      # production build, output in dist/
+ng test       # unit tests (Vitest)
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
