@@ -47,17 +47,46 @@ Being upfront about scope — these were designed but not built yet:
 
 ## Running locally
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+## Requirements
+
+- Node.js — a version supported by the project's Angular version
+- npm
+- Git (optional, for cloning the repository)
+
+## Running locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Astaartess/food-price-tracker.git
+cd food-price-tracker
+```
+
+Install dependencies:
 
 ```bash
 npm install
-ng serve
 ```
 
-Navigate to `http://localhost:4200/`. The app will reload automatically on file changes.
+Start the development server:
 
 ```bash
-ng build      # production build, output in dist/
-ng test       # unit tests (Vitest)
+npx ng serve
 ```
+
+Open `http://localhost:4200/` in your browser.
+
+## Production build
+
+```bash
+npx ng build
+```
+
+## Tests
+
+```bash
+npx ng test
+```
+
+Run the tests to verify the application before making changes or publishing a new version.
 
