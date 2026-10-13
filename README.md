@@ -62,7 +62,7 @@ View product information and historical price statistics.
 
 Explore historical price data using the available currency views.
 
-![Price statistics in USD](docs/screenshots/price-statistics-usd.png)
+![Price statistics in USD](docs/screenshots/product-details-price-history.png)
 
 ## Running locally
 
