@@ -44,6 +44,25 @@ Being upfront about scope — these were designed but not built yet:
 - Push notifications on price drops
 - Cross-store price comparison
 - Aggregate analytics (average/min/max price, month-over-month change)
+## Screenshots
+
+### Product Catalog
+
+Browse products and find items using the search interface.
+
+![Product catalog](docs/screenshots/product-catalog.png)
+
+### Product Details and Price History
+
+View product information and historical price statistics.
+
+![Product details and price history](docs/screenshots/product-details-price-history.png)
+
+### Price Statistics in Different Currencies
+
+Explore historical price data using the available currency views.
+
+![Price statistics in USD](docs/screenshots/price-statistics-usd.png)
 
 ## Running locally
 
